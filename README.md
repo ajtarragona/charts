@@ -6,6 +6,7 @@ Frontend package for the Charts generation library ChartsJs
 
 ```bash
 composer require ajtarragona/charts:"@dev"
+```
 
 > **Important!!** Cada vegada que s'actualitzi el paquet, cal executar aquesta comanda per sobrescriure els assets (js i css)
 ```bash
