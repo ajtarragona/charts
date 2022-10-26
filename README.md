@@ -1,6 +1,6 @@
 # Charts
 
-Frontend package for the Charts generation library ChartsJs
+Frontend package for the Charts generation library [ChartsJs](https://www.chartjs.org/)
 
 ## Instalació
 
