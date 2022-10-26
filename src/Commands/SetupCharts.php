@@ -3,12 +3,7 @@
 namespace Ajtarragona\Charts\Commands;
 
 use Illuminate\Console\Command;
-
-
-use Ajtarragona\ACL\Models\User;
-use Ajtarragona\ACL\Models\Role;
-use Ajtarragona\ACL\Models\Permission;
-use \Exception;
+use Illuminate\Support\Facades\Artisan;
 
 
 class SetupCharts extends Command

@@ -2,7 +2,9 @@
 
 namespace Ajtarragona\Charts;
 
+use Ajtarragona\Charts\Commands\SetupCharts;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Blade;
 
 class ChartsServiceProvider extends ServiceProvider
 {
@@ -25,6 +27,9 @@ class ChartsServiceProvider extends ServiceProvider
 
         $this->registerCommands();
 
+        Blade::directive('chart', function($expression){
+            return "<?php echo renderChart({$expression}); ?>";
+        });
 
     }
 
