@@ -43,6 +43,8 @@ Hi podries afegir més Paletes de colors.
 </body>
 </html>
 ```
+
+
 #### Incloure a la capçalera el token CSRF i la url base
 ```html
 <!doctype html>
