@@ -96,6 +96,6 @@ O bé fer un chart dinàmic. Passant un string amb tipus de gràfica, els datase
 > Podem deshabilitar aquesta ruta definint la variable `CHART_SAMPLES = false` a l'arxiu `.env` de l'aplicació (recomanable fer-ho en producció)
 
 
-> Mirar la carpeta `src\Models\Samples` per accedir al codi font dels charts com a instància de `BaseChart`.
+> Mirar la carpeta [`src\Models\Samples`](tree/main/src/Models/Samples) per accedir al codi font dels charts com a instància de `BaseChart`.
 > 
-> Mirar la carpeta `src\resources\views\samples` per accedir al codi font dels diferents charts dinàmics.
+> Mirar la carpeta [`src\resources\views\samples`](tree/main/src/resources/views/samples) per accedir al codi font dels diferents charts dinàmics.
