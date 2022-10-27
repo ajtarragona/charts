@@ -84,18 +84,21 @@ O bé passar una instància de `BaseChart` i un array d'opcions:<br/>
 @chart($chart, $opcions=[])
 ```
 
+> [Codi font d'exemples](https://github.com/ajtarragona/charts/tree/main/src/Models/Samples) 
+
+
 O bé fer un chart dinàmic. Passant un string amb tipus de gràfica, els datasets i un array d'opcions:
 
 ```bash
 @chart($tipus, $datasets, $opcions=[])
 ```
 
+> [Codi font d'exemples](https://github.com/ajtarragona/charts/tree/main/src/resources/views/samples)
 
-> Es pot accedir als exemples amb la ruta `ajtarragona/charts/samples`
+
+---
+
+
+> Des de la teva aplicació, es pot accedir a una **DEMO** amb la ruta `ajtarragona/charts/samples`
 >
-> Podem deshabilitar aquesta ruta definint la variable `CHART_SAMPLES = false` a l'arxiu `.env` de l'aplicació (recomanable fer-ho en producció)
-
-
-> Mirar la carpeta [`src\Models\Samples`](https://github.com/ajtarragona/charts/tree/main/src/Models/Samples) per accedir al codi font dels charts com a instància de `BaseChart`.
-> 
-> Mirar la carpeta [`src\resources\views\samples`](https://github.com/ajtarragona/charts/tree/main/src/resources/views/samples) per accedir al codi font dels diferents charts dinàmics.
+> Podem deshabilitar la DEMO definint la variable `CHART_SAMPLES = false` a l'arxiu `.env` de l'aplicació (recomanable fer-ho en producció)
