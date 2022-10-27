@@ -10,5 +10,6 @@
 			"orange" => ["#ffcd56","#ffd26a","#ffd87e","#ffdd90","#ffe3a3","#ffe8b5","#ffeec8","#fff3da","#fff9ec","#ffffff"],
 			"green" => ["#3ed9a0","#5fdeaa","#78e2b5","#8ee7bf","#a3ebc9","#b6f0d4","#c9f4df","#dbf8e9","#edfbf4","#ffffff"],
 
-        ]
+        ],
+        "samples" => env('CHART_SAMPLES', true)
     ];

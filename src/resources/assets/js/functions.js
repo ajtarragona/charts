@@ -1,21 +1,9 @@
 
-csrfToken = function( ){
+getCsrfToken = function( ){
     return $('meta[name="csrf-token"]').attr('content');
 }
       
 
-$.fn.startLoading = function( ){
-    this.addClass('loading');
-    return this;
-    //initNavs(this);
-  };
-  
-  $.fn.stopLoading = function( ){
-    this.removeClass('loading').addClass("loaded");
-    return this;
-    //initNavs(this);
-  };
-  
   
 Object.defineProperty(Object.prototype, "dotSet", {
 

@@ -13,6 +13,7 @@
                
                data-datasets="{{json_encode($chart->getDatasets())}}"
           @else
+               data-url="{{route('charts.chart')}}"
                data-preloader="{{ $chart->preloader?'true':'false' }}"
                data-options="{{ json_encode($chart->getOptionParams()) }}"
                data-classname="{{ get_class($chart) }}"

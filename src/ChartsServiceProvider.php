@@ -69,7 +69,8 @@ class ChartsServiceProvider extends ServiceProvider
     public function register()
     {
         
-                
+        $this->app['router']->aliasMiddleware('chart-samples', \Ajtarragona\Charts\Middlewares\ChartsSamplesMiddleware::class);
+
         //helpers
         foreach (glob(__DIR__.'/Helpers/*.php') as $filename){
             require_once($filename);

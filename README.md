@@ -56,15 +56,7 @@ Hi podries afegir més Paletes de colors.
 ...
 ```
 
-#### Incloure les rutes
-```html
-<body>
-    ...
-    @routes
-    <script src="{{ asset('vendor/ajtarragona/js/charts.js')}}" language="JavaScript"></script>
-	
-</body>
-```
+
 #### Inicialitzar els charts
 Podem inicialitzar tots els que hi hagi carregats:
 ```html
@@ -101,4 +93,7 @@ O bé fer un chart dinàmic. Passant un string amb tipus de gràfica, els datase
 
 > Es pot accedir als exemples amb la ruta `ajtarragona/charts/samples`
 >
+> Podem deshabilitar aquesta ruta definint la variable `CHART_SAMPLES = false` a l'arxiu `.env` de l'aplicació (recomanable fer-ho en producció)
+
+
 > Mirar la carpeta `samples` per accedir al codi font.

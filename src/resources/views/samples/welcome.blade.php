@@ -78,8 +78,6 @@
 
 	</div>
 	
-	@routes
-	
 	<script src="{{ asset('vendor/ajtarragona/js/charts.js')}}" language="JavaScript"></script>
 	
 	<script language="JavaScript">
