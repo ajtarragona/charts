@@ -13,7 +13,7 @@ if (! function_exists('renderChart')) {
 			return $chart->setOptions($datasets_or_settings)->render();
 		}else{
 			if(is_string($chart)){
-				$classname="Ajtarragona\\WebComponents\\Models\\Charts\\".ucfirst(Str::camel($chart))."Chart";
+				$classname="Ajtarragona\\Charts\\Models\\".ucfirst(Str::camel($chart))."Chart";
 				$ch=new $classname($settings);
 				// $ch->chart_type=$chart;
 				// $ch->setDatasets($datasets_or_settings);

@@ -40,8 +40,7 @@ class ChartsServiceProvider extends ServiceProvider
      */
     protected function bootConfig()
     {   
-        $base = __DIR__.'/Config/';
-        $publish=[];
+      
 
        //publico configuracion
        $config = __DIR__.'/Config/charts.php';
