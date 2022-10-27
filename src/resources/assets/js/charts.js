@@ -27,7 +27,8 @@ var tgnchartdefaults = {
 
 function TgnChartClass(canvas, settings){
 
-	this.$canvas=canvas;
+    this.$canvas=canvas;
+    this.id=this.$canvas.attr('id');
 	this.$container=canvas.closest('.chart-container');
 	
     
@@ -57,7 +58,7 @@ function TgnChartClass(canvas, settings){
     
     // var chart_options=this.settings.options;
     var chart_options=this.prepareOptions(this.settings.options);
-    // al('options', chart_options);
+    // console.log('options', chart_options);
 
        this.chart = new Chart(
             this.$canvas[0],
@@ -149,29 +150,52 @@ function TgnChartClass(canvas, settings){
             });
         }
 
-        //lo mismo en datalabels
+        //lo mismo en datalabels, miro prefijo, sufijo y el contenido de la label
 
-        var suffix4=options.dotGet('plugins.datalabels.suffix');
-        var prefix4=options.dotGet('plugins.datalabels.prefix');
-
-        // console.log('datalabels',suffix4 , prefix4 , suffix_global, prefix_global);
-        if(suffix4 || prefix4 || suffix_global || prefix_global){
-            // console.log(this);  
-            options.dotSet( 'plugins.datalabels.formatter', function(value, context){
-                // if(o.settings.type=="bubble") console.log('plugins.datalabels.formatter',value, context);
-                var val=$.isPlainObject(value) ? value.r : value;
-
-               return  (prefix4?prefix4:(prefix_global??''))+''+val+''+(suffix4?suffix4:(suffix_global??''));
-                
-            });
+         
+        var datalabels=options.dotGet('plugins.datalabels');
+        if(datalabels){
+            
+            options = o.addFormatterToDatalabel(options, 'plugins.datalabels');
+            // console.log(datalabels.labels);
+            if(datalabels.labels){
+                collect(datalabels.labels).each((datalabel, key) => {
+                    // console.log(key);
+                    options = o.addFormatterToDatalabel(options, 'plugins.datalabels.labels.'+key);
+                });
+            }
         }
-        
-        
        
         return options;
     }
 
+    this.addFormatterToDatalabel = function(options, path){
+        // console.log('addFormatterToDatalabel',this.id,path);
+        var datalabel=options.dotGet(path);
+        var suffix_global=options.dotGet('suffix');
+        var prefix_global=options.dotGet('prefix');
+        var suffix=options.dotGet(path+'.suffix');
+        var prefix=options.dotGet(path+'.prefix');
 
+        options.dotSet( path+'.formatter', function(value, context){
+            var val; 
+            var islabel=false;
+            if(datalabel.content && datalabel.content=='label'){
+                val = context.chart.data.labels[context.dataIndex];
+                islabel=true;
+            }else{
+                val = value;
+                val=$.isPlainObject(val) ? val.r : val;
+            }
+            
+            // console.log(datalabel.content);
+            //prefijo y sufijo solo si muestro el valor.
+            return  (!islabel?(prefix?prefix:(prefix_global??'')):'') +''+val+''+ (!islabel?(suffix?suffix:(suffix_global??'')):'');
+            
+        });
+
+        return options;
+    }
 
 	this.setOptions = function(options){
         options = this.prepareOptions(options);

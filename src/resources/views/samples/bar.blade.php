@@ -60,6 +60,7 @@
 
     ]
 ],[
+    "id"=>"bar-chart",
     "legend.display"=>false,
     "title.display"=>true,
     "title.text"=>"Random Bar chart",

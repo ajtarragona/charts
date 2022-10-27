@@ -39,7 +39,9 @@
 	<div id="app">
 		
 		<main role="main" id="main-container">
-		
+			
+
+
 			{{-- @dump($demochart) --}}
             @chart($demochart)
             @chart($linesasyncchart)
