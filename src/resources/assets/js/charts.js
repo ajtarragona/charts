@@ -352,6 +352,7 @@ $.fn.tgnChart = function( settings ){
         // console.log("HOLA3");
         var chart=new TgnChartClass($(this), settings);
         chart.init();
-
+        // console.log("CHARTaaaa",chart);
+        // return chart;
     });
 };

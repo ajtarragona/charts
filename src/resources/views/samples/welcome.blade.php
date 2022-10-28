@@ -83,7 +83,13 @@
 	<script src="{{ asset('vendor/ajtarragona/js/charts.js')}}" language="JavaScript"></script>
 	
 	<script language="JavaScript">
-		$('.chart-canvas').tgnChart();
+		var charts=$('.chart-canvas').tgnChart();
+		// console.log(charts);
+
+		// charts.each(function(index,chart){
+		// 	console.log(chart);
+		// 	// console.log(chart.options.plugins.tooltip.position);
+		// });
 	</script>
 		
 
