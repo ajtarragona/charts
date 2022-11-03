@@ -1,7 +1,6 @@
 if(!window.$) window.$ = window.jQuery = require('jquery');
-if(!window.Popper)  window.Popper = require('popper.js');
+// if(!window.Popper)  window.Popper = require('popper.js');
 
-require('bootstrap');
 
 require('./functions');
 
