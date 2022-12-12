@@ -314,6 +314,7 @@ function TgnChartClass(canvas, settings){
         var o=this;
         
         //si es la primera vez o el numero de datasets ha cambiado
+        // console.log('update',this.datasets, this.refresh_counter, this.datasets.length, o.chart.data.datasets.length);
         if(this.refresh_counter==0 || this.datasets.length != o.chart.data.datasets.length  ){
             this.chart.data.datasets = this.datasets;
             this.chart.data.labels= this.labels;
@@ -323,12 +324,34 @@ function TgnChartClass(canvas, settings){
                     o.chart.data.labels[i]=label;
                 });
             }
-            
+            // console.log(this.datasets);
             //se supone que los datasets tienen el mismo tamaño
+            // console.log(this.datasets);
             this.datasets.forEach((dataset, i) => {
-                dataset.data.forEach((value, j)=>{
-                    o.chart.data.datasets[i].data[j]=value;
+                // var ds=collect(dataset);
+
+                // console.log(dataset);
+                // console.log(ds);
+                Object.keys(dataset).forEach(key => {
+                    // console.log(key, dataset[key]);
+                    o.chart.data.datasets[i][key]=dataset[key];
                 });
+                  
+                
+               
+                // dataset.data.forEach((value, j)=>{
+                //     o.chart.data.datasets[i].data[j]=value;
+                // });
+
+                // console.log('dataset',dataset);
+                // dataset.forEach((value, key) => {
+               
+                //     if(key!="data" && key!="label")
+                // });
+            
+               
+                
+                //modificar las opciones de cada valor del dataset
                 // dataset.data.push(data);
             });
 
