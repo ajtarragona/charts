@@ -314,7 +314,7 @@ function TgnChartClass(canvas, settings){
         var o=this;
         
         //si es la primera vez o el numero de datasets ha cambiado
-        console.log('update',this.labels);
+        // console.log('update',this.labels);
         if(this.refresh_counter==0 || this.datasets.length != o.chart.data.datasets.length  ){
             this.chart.data.datasets = this.datasets;
             this.chart.data.labels= this.labels;
