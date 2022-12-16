@@ -41,7 +41,8 @@ class ChartsController extends Controller
  
              return response()->json([
                  "datasets"=>$chart->getDatasets(),
-                 "options"=>$chart->getOptions()
+                 "options"=>$chart->getOptions(),
+                 "disable_refresh"=>$chart->refresh_rate == 0
              ]);
             
              

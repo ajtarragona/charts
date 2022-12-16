@@ -77,7 +77,7 @@ function TgnChartClass(canvas, settings){
 
             if(this.settings.refresh_rate){
                 setInterval(function () {
-                    o.loadData();
+                    if(!document.hidden) o.loadData();
 
                 }, this.settings.refresh_rate * 1000 );
 
@@ -314,7 +314,7 @@ function TgnChartClass(canvas, settings){
         var o=this;
         
         //si es la primera vez o el numero de datasets ha cambiado
-        // console.log('update',this.datasets, this.refresh_counter, this.datasets.length, o.chart.data.datasets.length);
+        console.log('update',this.labels);
         if(this.refresh_counter==0 || this.datasets.length != o.chart.data.datasets.length  ){
             this.chart.data.datasets = this.datasets;
             this.chart.data.labels= this.labels;
@@ -323,6 +323,8 @@ function TgnChartClass(canvas, settings){
                 this.labels.forEach((label, i) => {
                     o.chart.data.labels[i]=label;
                 });
+            }else{
+                o.chart.data.labels=this.labels;
             }
             // console.log(this.datasets);
             //se supone que los datasets tienen el mismo tamaño
