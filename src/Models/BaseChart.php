@@ -171,4 +171,7 @@ class BaseChart
         return uses_trait($this, 'Ajtarragona\Charts\Traits\AsyncChart'); // && (!isset($this->async) || (isset($this->async) && $this->async)) );
     }
 
+    public function getSettings(){
+        return $this->options;
+    }
 }

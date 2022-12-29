@@ -23,7 +23,7 @@ class Dataset
     public function __construct($label=null, $data=null, $options=[])
     {
         $this->label = $label;
-        $this->id = $label ? Str::snake($label): null;
+        $this->id = uniqid('dataset-');// $label ? Str::snake($label): null;
         $this->data = $data ?? collect();
         $this->options = $options;
         $this->prepareOptions();
