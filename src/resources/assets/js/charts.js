@@ -29,7 +29,7 @@ function TgnChartClass(canvas, settings){
     this.$canvas=canvas;
     this.id=this.$canvas.attr('id');
 	this.$container=canvas.closest('.chart-container');
-	
+	this.chart_options=[];
     
 	this.settings = $.extend(true, {}, tgnchartdefaults, this.$canvas.data()); 
     // if(this.settings.async)  console.log("DATA",this.$canvas.data());
@@ -51,12 +51,13 @@ function TgnChartClass(canvas, settings){
             
         // }
 
-       if(!this.settings.async) this.prepareData(this.settings.datasets);
+       
 
     //    al('TgnChartClass',this);
     
     // var chart_options=this.settings.options;
-    var chart_options=this.prepareOptions(this.settings.options);
+   this.prepareOptions(this.settings.options);
+   if(!this.settings.async) this.prepareData(this.settings.datasets);
     // console.log('options', chart_options);
         // console.log('this.labels',this.labels);
        this.chart = new Chart(
@@ -67,7 +68,7 @@ function TgnChartClass(canvas, settings){
                     labels: this.labels,
                     datasets: this.datasets,
                 },
-                options: chart_options
+                options: this.chart_options
             }
         );
 
@@ -171,6 +172,7 @@ function TgnChartClass(canvas, settings){
             }
         }
        
+        this.chart_options= options;
         return options;
     }
 
@@ -262,8 +264,9 @@ function TgnChartClass(canvas, settings){
 
         this.labels=collect(all_labels).unique();
 
-        // console.log('o.settings',o.settings.options, o.settings.options.sortLabels );
-        var sort=o.settings.options.sortLabels ?? false;
+        // console.log('options',o.chart_options );
+
+        var sort=o.chart_options.sortLabels ?? false;
         if(sort){
             if(sort=== true || sort=="asc"){
                 this.labels = this.labels.sort()
@@ -325,9 +328,9 @@ function TgnChartClass(canvas, settings){
             success: function(data){
                 o.$container.removeClass('loading');
                 o.$container.find('.error-msg').remove();
-                // al("data", data);
-                o.prepareData(data.datasets);
                 o.setOptions(data.options);
+                o.prepareData(data.datasets);
+                
                 o.update();
             },
             error: function(xhr){

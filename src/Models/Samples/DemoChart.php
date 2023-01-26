@@ -3,6 +3,7 @@
 namespace Ajtarragona\Charts\Models\Samples;
 
 use Ajtarragona\Charts\Models\LineChart;
+use Ajtarragona\Charts\Traits\AsyncChart;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Faker\Factory as FakerFactory;
@@ -13,7 +14,8 @@ class DemoChart extends LineChart
 
     protected $palette="default";
     protected $color_mode="dataset";
-    
+    public $refresh_rate =3;
+    // use AsyncChart;
 
     public $id="demo_chart";
 
@@ -30,7 +32,7 @@ class DemoChart extends LineChart
         'title.align'=>'start',
         'title.font.size'=>'20pt',
         'aspectRatio' => 2,
-        "sortLabels" => ["Opcio 1","Opcio 3","Opcio 4","Opcio 6","Opcio 5","Opcio 2"]
+        "sortLabels" => true
     ];
 
  
@@ -41,6 +43,8 @@ class DemoChart extends LineChart
     public function __construct($options=[])
     {
         parent::__construct($options);
+
+    // public function reload(){
         
         $faker = FakerFactory::create();
         $numseries=$faker->numberBetween(1,4);
