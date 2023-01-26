@@ -3,7 +3,7 @@
 
 <div class="chart-container {{$chart->container_class}}">
      <div class="preloader"><div></div><div></div></div>
-     
+     {{-- @dump($chart->getDatasets()) --}}
      <canvas 
           id="{{ $chart->_id() }}" 
           class="chart-canvas {{$chart->css_class}}" 

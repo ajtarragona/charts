@@ -40,14 +40,20 @@ class PieAsyncChart extends PieChart
     public function reload(){
         $faker = FakerFactory::create();
         
-        $dataset=$this->addDataset("Serie 1",null);
-
+        
         $pos=["left","right","top","bottom"];
         // dump($pos);
         $this->setOption('legend.position', $pos[array_rand($pos)]);
-
-        for($j=0;$j<6; $j++){
-            $this->addValueToDataset($dataset->id, "Opcio ".rand(1,2)."-".($j+1), $faker->numberBetween(100,300));
+        
+        $numseries=$faker->numberBetween(1,3);
+        
+        for($i=0;$i<$numseries; $i++){
+            $dataset=$this->addDataset("Serie ".($i+1),null);
+            $numdata=$faker->numberBetween(3,8);
+            
+            for($j=0;$j<$numdata; $j++){
+                $this->addValueToDataset($dataset->id, "Opcio ".rand(1,2)."-".($j+1), $faker->numberBetween(100,300));
+            }
         }
 
         

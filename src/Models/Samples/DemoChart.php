@@ -22,14 +22,15 @@ class DemoChart extends LineChart
         'title.display'=> true,
         'legend.position' =>'right',
         'legend.onClick'=>false,
-        'datalabels.display'=>false,
+        'datalabels.display'=>true,
         'tooltip.backgroundColor' => '#ffffff',
         'tooltip.bodyColor' => '#333333',
         'tooltip.titleColor' => '#666666',
         'tooltip.caretSize' => 0,
         'title.align'=>'start',
         'title.font.size'=>'20pt',
-        'aspectRatio' => 2
+        'aspectRatio' => 2,
+        "sortLabels" => ["Opcio 1","Opcio 3","Opcio 4","Opcio 6","Opcio 5","Opcio 2"]
     ];
 
  
@@ -43,16 +44,16 @@ class DemoChart extends LineChart
         
         $faker = FakerFactory::create();
         $numseries=$faker->numberBetween(1,4);
-        $numdata=$faker->numberBetween(3,8);
-        
         for($i=0;$i<$numseries; $i++){
+            $numdata=$faker->numberBetween(3,8);
+            
             $dataset=$this->addDataset("Serie " .($i+1), null, [
                 // 'fill'=>'origin'
             ]);
 
             for($j=0;$j<$numdata; $j++){
-                
-                $this->addValueToDataset($dataset->id, "Opcio ".($j+1), $faker->numberBetween(100,300));
+                if($faker->numberBetween(1,2) == 2 )
+                    $this->addValueToDataset($dataset->id, "Opcio ".($j+1), ["x"=> "Opcio ".($j+1), "y"=>$faker->numberBetween(100,300)]);
             }
 
         }

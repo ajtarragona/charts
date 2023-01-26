@@ -23,7 +23,7 @@ class LinesAsyncChart extends LineChart
         'title.text'=>"Demo async line chart",
         'title.display'=> true,
         'legend.position' =>'right',
-        'datalabels.display'=>false,
+        'datalabels.display'=>true,
         'tooltip.backgroundColor' => '#ffffff',
         'tooltip.bodyColor' => '#333333',
         'tooltip.titleColor' => '#666666',

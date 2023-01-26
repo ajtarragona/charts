@@ -58,7 +58,7 @@ function TgnChartClass(canvas, settings){
     // var chart_options=this.settings.options;
     var chart_options=this.prepareOptions(this.settings.options);
     // console.log('options', chart_options);
-
+        // console.log('this.labels',this.labels);
        this.chart = new Chart(
             this.$canvas[0],
             {
@@ -132,18 +132,24 @@ function TgnChartClass(canvas, settings){
         var suffix3=options.dotGet('plugins.tooltip.suffix');
         var prefix3=options.dotGet('plugins.tooltip.prefix');
 
-        // al('tooltip',suffix3);
+        // console.log('tooltip');
         // console.log(this.settings.type,suffix3,prefix3,suffix_global,prefix_global);
 
         if(suffix3 || prefix3 || suffix_global || prefix_global){
             options.dotSet( 'plugins.tooltip.callbacks.label', function(context){
                 let label = context.dataset.label || '';
-                // console.log('dotSet',context);
+                // console.log('plugins.tooltip.callbacks.label',context);
                 if (label) {
                     label += ': ';
                 }
-                if (context.formattedValue !== null) {
+                if(o.settings.type=="bubble"){
+                    var r = (prefix3?prefix3:(prefix_global??'')) + '' + context.raw.r + '' + (suffix3?suffix3:(suffix_global??''));
+                   
+                    label += "(" + context.raw.x + ", "+ context.raw.y + ", " + r +")";
+                    
+                }else if (context.formattedValue !== null) {
                     label += (prefix3?prefix3:(prefix_global??'')) + '' + context.formattedValue + '' + (suffix3?suffix3:(suffix_global??''));
+                    
                 }
                 return label;
             });
@@ -169,6 +175,7 @@ function TgnChartClass(canvas, settings){
     }
 
     this.addFormatterToDatalabel = function(options, path){
+        var o= this;
         // console.log('addFormatterToDatalabel',this.id,path);
         var datalabel=options.dotGet(path);
         var suffix_global=options.dotGet('suffix');
@@ -180,11 +187,26 @@ function TgnChartClass(canvas, settings){
             var val; 
             var islabel=false;
             if(datalabel.content && datalabel.content=='label'){
+                // console.log('datalabel.content',datalabel.content, context.chart.data, context.dataIndex);
                 val = context.chart.data.labels[context.dataIndex];
                 islabel=true;
             }else{
                 val = value;
-                val=$.isPlainObject(val) ? val.r : val;
+                // console.log('val',val);
+                if($.isPlainObject(val)){
+                    if(o.settings.type=="line"){
+                        val=val.y ?? val;
+                    }else if(o.settings.type=="bar"){
+                        val = (options.dotGet('indexAxis') == 'y') ? val.y : val.x;
+                    }else if(o.settings.type=="bubble"){
+                        val= val.r ?? val;
+                    }else if($.inArray(o.settings.type, ["pie","doughnut","radar","polarArea"]) > 0){
+                        // options.dotGet('parsing.key','value');
+                        val=val[options.dotGet('parsing.key','value')] ?? val;
+                    }
+
+                } 
+                //  
             }
             
             // console.log(datalabel.content);
@@ -203,17 +225,19 @@ function TgnChartClass(canvas, settings){
 
 
 	this.prepareData = function(datasets){
+        var o= this;
         var chart_data=[];
-        var labels=[];
+        var all_labels=[];
         //lo que me llega por data lo transformo
         //si es asincroono no habrá nada y no se hará nada
         if(datasets){ 
             datasets.forEach((dataset) => {
                 var data=collect(dataset.data);
 
-                labels=data.pluck('label').all();
+                // var labels=data.pluck('label').all();
                 var values=data.pluck('data').all();
-            
+                all_labels=all_labels.concat(data.pluck('label').all());
+                
                 var dataset_options = collect(dataset.options);
                 dataset_options=dataset_options.merge({
                     label : dataset.label,
@@ -235,7 +259,23 @@ function TgnChartClass(canvas, settings){
             });
 
         }
-        this.labels=labels;
+
+        this.labels=collect(all_labels).unique();
+
+        // console.log('o.settings',o.settings.options, o.settings.options.sortLabels );
+        var sort=o.settings.options.sortLabels ?? false;
+        if(sort){
+            if(sort=== true || sort=="asc"){
+                this.labels = this.labels.sort()
+            }else if(sort=="desc"){
+                this.labels = this.labels.sortDesc();
+            }else if(Array.isArray(sort)){
+                //pueden pasarme la lista de labels
+                this.labels = collect(sort);
+            }
+        }
+        
+        this.labels = this.labels.all();
         this.datasets=chart_data;
       
         
