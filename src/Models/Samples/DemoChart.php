@@ -32,7 +32,8 @@ class DemoChart extends LineChart
         'title.align'=>'start',
         'title.font.size'=>'20pt',
         'aspectRatio' => 2,
-        "sortLabels" => true
+        "sortLabels" => true,
+        "scales.x.grid.display"=>false,
     ];
 
  

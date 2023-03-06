@@ -2,6 +2,8 @@
 
 Frontend package for the Charts generation library [ChartsJs](https://www.chartjs.org/)
 
+[![Latest Stable Version](http://poser.pugx.org/ajtarragona/charts/v)](https://packagist.org/packages/ajtarragona/charts) [![Total Downloads](http://poser.pugx.org/ajtarragona/charts/downloads)](https://packagist.org/packages/ajtarragona/charts) [![Latest Unstable Version](http://poser.pugx.org/ajtarragona/charts/v/unstable)](https://packagist.org/packages/ajtarragona/charts) [![License](http://poser.pugx.org/ajtarragona/charts/license)](https://packagist.org/packages/ajtarragona/charts) [![PHP Version Require](http://poser.pugx.org/ajtarragona/charts/require/php)](https://packagist.org/packages/ajtarragona/charts)
+
 ## Instalació
 
 ```bash
