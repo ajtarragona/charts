@@ -1,4 +1,5 @@
 {
     "/src/public/js/charts.js": "/src/public/js/charts.js",
-    "/src/public/css/charts.css": "/src/public/css/charts.css"
+    "/src/public/css/charts.css": "/src/public/css/charts.css",
+    "/src/public/js/charts_vanilla.js": "/src/public/js/charts_vanilla.js"
 }
